@@ -3,6 +3,7 @@
 # numa manhã ensolarada.
 
 import random
+from time import sleep
 
 
 def boas_vindas():
@@ -12,6 +13,7 @@ def boas_vindas():
     print("* UM JOGO EMOCIONANTE                  *")
     print("****************************************")
     print()
+    sleep(1.3)
 
 
 def imprimir_letras(letras):
@@ -22,11 +24,11 @@ def imprimir_letras(letras):
 
 
 def mensagem_fracassou():
-    print("Voce fracassou. Tente novamente com mais calma\n")
+    print("\033[1;31mVoce fracassou. Tente novamente com mais calma\033[0;0m\n")
 
 
 def mensagem_acertou():
-    print("Parabens voce acertou. Voce é muito esperto\n")
+    print("\033[1;32mParabens voce acertou. Voce é muito esperto\033[0;0m\n")
 
 
 def ler_palavras_secretas_do_arquivo(nome_do_arquivo):
@@ -96,7 +98,7 @@ tentativa_atual = 1
 while True:
     if tentativa_atual > numero_maximo_tentativas:
         mensagem_fracassou()
-        print(f'A palavra secreta eh {palavra_secreta}')
+        print(f'\033[1;33mA palavra secreta eh {palavra_secreta}\033[0;0m')
         break
 
     imprimir_letras(letras)
@@ -104,7 +106,7 @@ while True:
     if len(chutes_dados) > 0:
         print("Letras ja usadas ", chutes_dados)
 
-    msg = f'Voce está na tentativa {tentativa_atual}. Qual o seu chute? '
+    msg = f'Voce está na tentativa {tentativa_atual}. \033[;1mQual o seu chute?\033[0;0m '
     chute = input(msg).strip().upper()
 
     if len(chute) != 1:
@@ -127,11 +129,11 @@ while True:
         index += 1
 
     if not acertou:
-        print('Chute errado!!!')
+        print('\033[1;7mChute errado!!!\033[0;0m')
         imprimir_boneco(tentativa_atual)
         tentativa_atual += 1
 
     if "_" not in letras:
         mensagem_acertou()
-        print(f'A palavra secreta eh {palavra_secreta}')
+        print(f'\033[1;33mA palavra secreta eh {palavra_secreta}\033[0;0m')
         break
